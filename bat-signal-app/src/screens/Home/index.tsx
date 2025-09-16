@@ -13,9 +13,12 @@ export function Home() {
   const [isBatSignalActive, setIsBatSignalActive] = useState(false);
 
   const handleActivateBatSignal = (activate: boolean) => {
+    setName('');
+    setPhone('');
+    setLocationDescription('');
+    setDescription('');
     setIsBatSignalActive(activate);
   }
-
 
   return (
     <View style={styles.container}>
@@ -29,46 +32,72 @@ export function Home() {
             style={styles.button}
             onPress={() => handleActivateBatSignal(true)}
           >
-            <Text style={styles.text}>Activate Bat Signal</Text>
+            <Text style={styles.textButton}>Activate Bat Signal</Text>
           </Pressable>
         </View>
       ) : (
-        <View style={styles.content}>
+        <View style={styles.contentForm}>
           <Image
-            style={styles.logo}
+            style={styles.miniLogo}
             source={logo}
           />
-          <TextInput
-            style={styles.input}
-            placeholder='Nome'
-            onChangeText={text => setName(text)}
-            value={name}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Telefone'
-            onChangeText={text => setPhone(text)}
-            value={phone}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Localização atual'
-            onChangeText={text => setLocationDescription(text)}
-            value={locationDescription}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Descrição'
-            onChangeText={text => setDescription(text)}
-            value={description}
-            multiline={true}
-            numberOfLines={4}
-          />
+          <View style={styles.formContainer}>
+            <View style={styles.inputContainer}>
+              <Text>Nome:</Text>
+              <TextInput
+                style={styles.input}
+                placeholder='Nome'
+                onChangeText={text => setName(text)}
+                value={name}
+              />
+            </View>
+            <View style={styles.inputContainer}>
+              <Text>Telefone:</Text>
+              <TextInput
+                style={styles.input}
+                placeholder='Telefone'
+                onChangeText={text => setPhone(text)}
+                value={phone}
+              />
+            </View>
+            <View style={styles.inputContainer}>
+              <Text>Localização:</Text>
+              <TextInput
+                style={styles.input}
+                placeholder='Localização atual'
+                onChangeText={text => setLocationDescription(text)}
+                value={locationDescription}
+              />
+            </View>
+            <View style={styles.inputContainer}>
+              <Text>Descrição:</Text>
+              <TextInput
+                style={[
+                  styles.input, 
+                  { 
+                    height: 180, 
+                    textAlignVertical: 'top', 
+                  }
+                ]} 
+                placeholder="Descrição"
+                onChangeText={text => setDescription(text)}
+                value={description}
+                multiline={true}
+              />
+            </View>
+          </View>
           <Pressable
-            style={styles.button}
+            style={[
+              styles.button, 
+              { 
+                width: '80%', 
+                justifyContent: 'center',
+                alignSelf: 'center' 
+              }
+            ]}
             onPress={() => handleActivateBatSignal(false)}
           >
-            <Text style={styles.text}>Enviar</Text>
+            <Text style={styles.textButton}>Enviar</Text>
           </Pressable>
         </View>
       )} 
